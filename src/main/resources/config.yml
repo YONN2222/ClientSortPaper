@@ -1,0 +1,53 @@
+# ClientSortPaper configuration
+# Use /clientsort reload (permission clientsortpaper.reload) to apply changes without restarting.
+
+# Language file from plugins/ClientSortPaper/lang/ without the .yml ending.
+# Bundled: en, zh, es, hi, fr, ar, pt, ru, de, ja
+# Copy any file and rename it to create your own language. Messages use MiniMessage.
+# This only affects the /sort and /clientsort commands. The mod shows its own texts.
+language: en
+
+# Switch the operations of the ClientSort mod on or off for the whole server.
+# Sorting also covers the collect step that comes right before it.
+# A client that is refused falls back to doing the operation itself, one click at a time,
+# unless the player turned that off in the mod.
+operations:
+  sort: true
+  stack-fill: true
+  transfer: true
+
+inventories:
+  # Inventories other than the player's own that operations may touch.
+  # Names of the Bukkit InventoryType enum. Crafting tables, furnaces, anvils and other
+  # inventories with special slots are not on the list and should stay off it.
+  allowed-types: [CHEST, ENDER_CHEST, SHULKER_BOX, BARREL, HOPPER, DISPENSER, DROPPER]
+  # Menus made by other plugins (shops, GUIs) look like chests but their slots are buttons.
+  # They are refused unless you turn this on.
+  allow-plugin-menus: false
+
+# Worlds where all operations are refused.
+disabled-worlds: []
+
+rate-limit:
+  # Most requests one player may send per second. 0 turns the limit off.
+  max-per-second: 20
+
+middle-click:
+  # Middle click on a slot sorts the open container or your inventory, for players without the
+  # ClientSort mod. Players with the mod are skipped, the mod handles the middle click itself.
+  # It does not work in creative mode, where the middle click copies an item.
+  enabled: true
+  # name or quantity (largest stacks first)
+  order: name
+
+bedrock-menu:
+  # With Floodgate installed, /sort opens a form for Bedrock players. Bedrock has no middle click.
+  # The form can also sort the container the player looks at, so it does not need to be open.
+  enabled: true
+
+sort-command:
+  # /sort for players without the ClientSort mod, for example Bedrock players through Geyser.
+  enabled: true
+
+# Write every performed operation to the console.
+log-operations: false

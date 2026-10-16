@@ -1,0 +1,35 @@
+ClientSort Paper
+Copyright 2026 YONN2222
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+ClientSort Paper is an independent server side companion for the ClientSort mod
+(https://github.com/TerminalMC/ClientSort, https://modrinth.com/project/K0AkAin6).
+It is not made by, endorsed by or affiliated with TerminalMC or the authors of ClientSort.
+It contains no code or assets copied from ClientSort. It speaks the network protocol of the
+ClientSort mod (channel namespace "clientsort") so that the mod can use it.
+
+The protocol and the behaviour of the operations (collect, sort, stack fill, transfer) were
+learned from the ClientSort source code, which is licensed under the Apache License 2.0:
+
+  ClientSort
+  Copyright TerminalMC (NotRyken) and contributors
+  https://github.com/TerminalMC/ClientSort
+
+ClientSort itself builds on ideas and code of these projects, which are credited in its repository:
+
+  Mouse Wheelie by Siphalor, Apache License 2.0
+  Inventory Management by Kyrptonaught (and others), MIT License
+
+Bundled libraries (relocated inside the plugin jar):
+
+  bStats Metrics for Bukkit, MIT License
+  https://github.com/Bastian/bStats-Metrics
+
+  Adventure (MiniMessage and the legacy serializer), MIT License
+  Copyright KyoriPowered
+  https://github.com/KyoriPowered/adventure
+
+"Minecraft" is a trademark of Mojang AB. This project is not affiliated with Mojang or Microsoft.
+"Paper" and "Spigot" are names of the platforms the plugin runs on. This project is not part of
+PaperMC or SpigotMC.
