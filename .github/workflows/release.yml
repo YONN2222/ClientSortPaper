@@ -1,0 +1,58 @@
+name: Release
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      - name: Set up JDK
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: Make the Gradle wrapper executable
+        run: chmod +x gradlew
+      - name: Check that the tag matches the version
+        run: |
+          expected="v$(grep '^version=' gradle.properties | cut -d= -f2)"
+          if [ "$GITHUB_REF_NAME" != "$expected" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match $expected from gradle.properties"
+            exit 1
+          fi
+      - name: Build and test
+        run: ./gradlew build
+      - name: Collect release notes
+        env:
+          RELEASE_BODY: ${{ github.event.release.body }}
+        run: printf '%s\n' "$RELEASE_BODY" > notes.md
+      - name: Attach the jar to the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "$GITHUB_REF_NAME" "$(ls build/libs/ClientSortPaper-*.jar | grep -v -e -plain -e -sources | head -n 1)" --clobber
+      - name: Publish to Modrinth
+        env:
+          MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
+        run: >
+          ./gradlew -p publish modrinth
+          -PreleaseVersion="${GITHUB_REF_NAME#v}"
+          -Pjar="$GITHUB_WORKSPACE/$(ls build/libs/ClientSortPaper-*.jar | grep -v -e -plain -e -sources | head -n 1)"
+          -PgameVersions="$(grep '^supportedVersions=' gradle.properties | cut -d= -f2)"
+          -PnotesFile="$GITHUB_WORKSPACE/notes.md"
+      - name: Publish to Hangar
+        env:
+          HANGAR_TOKEN: ${{ secrets.HANGAR_TOKEN }}
+        run: >
+          ./gradlew -p publish publishPluginPublicationToHangar
+          -PreleaseVersion="${GITHUB_REF_NAME#v}"
+          -Pjar="$GITHUB_WORKSPACE/$(ls build/libs/ClientSortPaper-*.jar | grep -v -e -plain -e -sources | head -n 1)"
+          -PgameVersions="$(grep '^supportedVersions=' gradle.properties | cut -d= -f2)"
+          -PnotesFile="$GITHUB_WORKSPACE/notes.md"
