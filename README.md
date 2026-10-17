@@ -25,7 +25,7 @@ ClientSort is a client mod for Fabric, NeoForge and Forge that sorts inventories
 
 Without it the mod sorts by moving items one click at a time, which is slow and visible on a server. With the plugin the mod sends one request and the server rearranges everything at once. Sorting, filling stacks and moving everything between two inventories become instant.
 
-This is an unofficial plugin. It is not made by or affiliated with the ClientSort authors, see [NOTICE](NOTICE).
+**Unofficial community plugin.** ClientSort Paper is not made by, endorsed by or affiliated with TerminalMC or the authors of ClientSort. It is an independent plugin that speaks the same protocol as their mod, see [NOTICE](NOTICE).
 
 ## Features
 

@@ -14,9 +14,11 @@
 
 **The server side of the [ClientSort mod](https://modrinth.com/project/K0AkAin6), made for Paper.**
 
+> **Unofficial community plugin.** ClientSort Paper is not made by, endorsed by or affiliated with TerminalMC or the authors of ClientSort. It is an independent plugin that speaks the same protocol as their mod.
+
 ClientSort is a client mod for Fabric, NeoForge and Forge that sorts inventories and chests. It can also be installed on a server, where it makes sorting instant. That server part only exists as a mod, so a Paper server cannot use it. ClientSort Paper is that server part as a plugin: the same job, for Paper, Spigot, Purpur and Folia. Players keep the normal ClientSort mod, nothing changes for them.
 
-Open source under Apache 2.0, no dependencies. This is an unofficial plugin and not affiliated with the ClientSort authors.
+Open source under Apache 2.0, no dependencies.
 
 With the plugin on the server, the ClientSort mod sorts a chest or your inventory in one step instead of moving every item with a click. Sorting, fill stacks and move all are instant, also on busy servers.
 
