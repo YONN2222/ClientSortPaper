@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    id("com.gradleup.shadow") version "9.4.0"
+    id("com.gradleup.shadow") version "9.6.1"
 }
 
 val pluginName: String by project
